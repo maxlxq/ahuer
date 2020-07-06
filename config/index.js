@@ -1,3 +1,13 @@
+const path = require('path')
+
+// const ENV_TYPE = process.env.ENV_TYPE || 'dev'
+
+const [TARO_CMD, TARO_ENV] = process.env.npm_lifecycle_event.split(':')
+
+const DIST_PATH = TARO_ENV === 'h5'
+  ? (process.env.ENV_TYPE === 'production' ? 'h5_prod' : 'h5_dev' )
+  : 'weapp'
+
 const config = {
   projectName: 'ahuer',
   date: '2020-6-20',
@@ -8,7 +18,17 @@ const config = {
     '828': 1.81 / 2
   },
   sourceRoot: 'src',
-  outputRoot: 'dist',
+  outputRoot: `dist/${DIST_PATH}`,
+  alias: {
+    '@': path.resolve(__dirname, '../src'),
+    '@ACTIONS': path.resolve(__dirname, '..', 'src/redux/actions'),
+    '@REDUCERS': path.resolve(__dirname, '..', 'src/redux/reducers'),
+    '@SAGAS': path.resolve(__dirname, '..', 'src/redux/sagas'),
+    '@STORE': path.resolve(__dirname, '..', 'src/redux/store'),
+    '@UTILS': path.resolve(__dirname, '..', 'src/utils'),
+    '@ASSETS': path.resolve(__dirname, '..', 'src/assets'),
+    '@IMG': path.resolve(__dirname, '..', 'src/assets/images'),
+  },
   babel: {
     sourceMap: true,
     presets: [
@@ -40,11 +60,6 @@ const config = {
       autoprefixer: {
         enable: true,
         config: {
-          browsers: [
-            'last 3 versions',
-            'Android >= 4.1',
-            'ios >= 8'
-          ]
         }
       },
       pxtransform: {
@@ -75,11 +90,6 @@ const config = {
       autoprefixer: {
         enable: true,
         config: {
-          browsers: [
-            'last 3 versions',
-            'Android >= 4.1',
-            'ios >= 8'
-          ]
         }
       },
       cssModules: {

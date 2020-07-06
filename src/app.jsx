@@ -1,9 +1,7 @@
-import Taro, { Component } from '@tarojs/taro'
-import { Provider } from '@tarojs/redux'
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
 
-import Index from './pages/index'
-
-import configStore from './store'
+import configStore from '@STORE'
 
 import './app.scss'
 
@@ -16,18 +14,6 @@ import './app.scss'
 const store = configStore()
 
 class App extends Component {
-
-  config = {
-    pages: [
-      'pages/index/index'
-    ],
-    window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
-    }
-  }
 
   componentDidMount () {}
 
@@ -42,10 +28,10 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <Index />
+        {this.props.children}
       </Provider>
     )
   }
 }
 
-Taro.render(<App />, document.getElementById('app'))
+export default App

@@ -1,8 +1,9 @@
 {
-  "miniprogramRoot": "./dist",
+  "miniprogramRoot": "dist/",
   "projectname": "ahuer",
   "description": "AHU 安徽大学学子可以回顾大学生活，分享大学故事，毕业之后的奋斗历程，欢迎一起分享",
-  "appid": "touristappid",
+  "appid": "wxe88f5f40c508c82e",
+  "appsecret": "1153f6ac259f8d84d5ea4eda74bd9e3a",
   "setting": {
     "urlCheck": true,
     "es6": false,
